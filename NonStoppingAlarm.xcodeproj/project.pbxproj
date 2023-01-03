@@ -19,6 +19,7 @@
 		C1D93F432964295E00B7FBC3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C1D93F452964295F00B7FBC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1D93F482964295F00B7FBC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C1D93F4F29642A2C00B7FBC3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +36,7 @@
 		C1D93F352964295E00B7FBC3 = {
 			isa = PBXGroup;
 			children = (
+				C1D93F4F29642A2C00B7FBC3 /* README.md */,
 				C1D93F402964295E00B7FBC3 /* NonStoppingAlarm */,
 				C1D93F3F2964295E00B7FBC3 /* Products */,
 			);
