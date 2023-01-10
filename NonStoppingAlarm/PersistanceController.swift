@@ -11,7 +11,7 @@ import CoreData
 
 struct PersistenceController {
     // A singleton for our entire app to use
-    static let shared = PersistenceController()
+    static let shared = PersistenceController(inMemory: false)
 
     // Storage for Core Data
     let container: NSPersistentContainer
@@ -24,6 +24,7 @@ struct PersistenceController {
         for _ in 0..<10 {
             let alarm = Alarms(context: controller.container.viewContext)
             alarm.fri = true
+            alarm.time = Date()
             alarm.name = "Testing"
         }
 
@@ -35,7 +36,7 @@ struct PersistenceController {
     init(inMemory: Bool = false) {
         // If you didn't name your model Main you'll need
         // to change this name below.
-        container = NSPersistentContainer(name: "Main")
+        container = NSPersistentContainer(name: "Model")
 
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
@@ -44,18 +45,6 @@ struct PersistenceController {
         container.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Error: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    func save() {
-        let context = container.viewContext
-
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Show some error here
             }
         }
     }

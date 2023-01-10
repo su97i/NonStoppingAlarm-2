@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Alarms" representedClassName="Alarms" syncable="YES" codeGenerationType="class">
-        <attribute name="fri" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="mon" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="problem_type" optional="YES" attributeType="String"/>
-        <attribute name="sat" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="snooze" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="sun" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="thu" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="tue" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="vibration" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="wed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="fri" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="mon" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="problem_type" attributeType="String"/>
+        <attribute name="sat" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="snooze" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="status" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="sun" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="thu" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="tue" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="vibration" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="wed" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
 </model>

@@ -17,7 +17,7 @@ struct WeekDayComponent: View{
         Button(action: {
             selected = !selected
         }, label: {
-            Text (day.str)
+            Text (LocalizedStringKey(day.str))
                 .font (.headline)
                 .fontWeight (.semibold)
                 .foregroundColor (selected ? .white : .black)
@@ -32,6 +32,8 @@ struct WeekDayComponent: View{
                             .fill(Color("light green 1"))
                     }
                 })
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(LocalizedStringKey(day.str+"."))
         })
         
     }
@@ -47,7 +49,7 @@ struct ProblemTypeComponent: View{
         Button(action: {
             selected = !selected
         }, label: {
-            Text (val.str)
+            Text (LocalizedStringKey(val.str))
                 .font (.headline)
                 .fontWeight (.semibold)
                 .foregroundColor (selected ? .white : .black)
@@ -62,11 +64,14 @@ struct ProblemTypeComponent: View{
                             .fill(Color("light green 1"))
                     }
                 })
+                .accessibilityLabel(LocalizedStringKey(val.str))
         })
         
     }
     
 }
+
+
 
 enum TypeOfProblem: Codable, Hashable{
     case MathProblem
@@ -95,13 +100,17 @@ struct TypeOfProblemWrapper: Codable, Hashable{
 }
 
 struct SettingAlarm: View {
-//    private var managedObjectContext = ContentView()
-//        .environment(\.managedObjectContext, yourCoreDataContext)
+    //    private var managedObjectContext = ContentView()
+    //        .environment(\.managedObjectContext, yourCoreDataContext)
     
     @State private var selectedDate = Date()
-//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    //    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    @State private var setAlarmName: String = ""
+    @Environment(\.managedObjectContext) var moc
+//    let moc = PersistenceController.shared.container.viewContext
+    @Environment(\.presentationMode) var presentationMode
+    
+    @State private var alarmName: String = ""
     
     @State private var sunSelected:Bool = false
     @State private var monSelected:Bool = false
@@ -116,17 +125,52 @@ struct SettingAlarm: View {
     @State private var vibration:Bool = false
     @State private var snooze:Bool = false
     
-    var body: some View {
+    
+    
+    func addAlarm() {
         
+        let alarms = Alarms(context: self.moc)
+        
+        alarms.name = self.alarmName
+        
+        alarms.sun = self.sunSelected
+        alarms.mon = self.monSelected
+        alarms.tue = self.tueSelected
+        alarms.wed = self.wedSelected
+        alarms.thu = self.thuSelected
+        alarms.fri = self.friSelected
+        alarms.sat = self.satSelected
+        
+        alarms.problem_type = self.selectedTypeOfProblem.str
+        
+        alarms.vibration = self.vibration
+        alarms.snooze = self.snooze
+        
+        alarms.time = self.selectedDate
+        alarms.status = true
+        
+        do {
+            try self.moc.save()
+        } catch {
+            print("whoops \(error.localizedDescription)")
+        }
+//        ListAlarms().environment(
+//            \.managedObjectContext,
+//             self.moc
+//        )
+    }
+    
+    var body: some View {
         
         NavigationView {
             ScrollView {
                 Group{
                     TextField (
                         "Set Alarm Name",
-                        text: $setAlarmName
+                        text: $alarmName
                         
                     )
+//                    .accessibilityLabel("Set Alarm Name")
                     .multilineTextAlignment(.center)
                     .font(.title3)
                     
@@ -143,28 +187,30 @@ struct SettingAlarm: View {
                         .fontWeight(.semibold)
                         .padding(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .accessibilityLabel("Repeat")
                     
                     HStack(spacing: 12.0){
                         
-                        WeekDayComponent(day: WeekDayWrapper(val: .Sun), selected: $sunSelected)
-                        WeekDayComponent(day: WeekDayWrapper(val: .Mon), selected: $monSelected)
-                        WeekDayComponent(day: WeekDayWrapper(val: .Tue), selected: $tueSelected)
-                        WeekDayComponent(day: WeekDayWrapper(val: .Wed), selected: $wedSelected)
-                        WeekDayComponent(day: WeekDayWrapper(val: .Thu), selected: $thuSelected)
-                        WeekDayComponent(day: WeekDayWrapper(val: .Fri), selected: $friSelected)
-                        WeekDayComponent(day: WeekDayWrapper(val: .Sat), selected: $satSelected)
+                        WeekDayComponent(day: WeekDayWrapper(val: .Sun, status: false), selected: $sunSelected)
+                        WeekDayComponent(day: WeekDayWrapper(val: .Mon, status: false), selected: $monSelected)
+                        WeekDayComponent(day: WeekDayWrapper(val: .Tue, status: false), selected: $tueSelected)
+                        WeekDayComponent(day: WeekDayWrapper(val: .Wed, status: false), selected: $wedSelected)
+                        WeekDayComponent(day: WeekDayWrapper(val: .Thu, status: false), selected: $thuSelected)
+                        WeekDayComponent(day: WeekDayWrapper(val: .Fri, status: false), selected: $friSelected)
+                        WeekDayComponent(day: WeekDayWrapper(val: .Sat, status: false), selected: $satSelected)
                         
                     }.padding()
                     
-            }
-                    
-                    Divider()
-                    Text("Tasks to do")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .padding(.leading)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
+                }
+                
+                Divider()
+                Text("Tasks to do")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .padding(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityLabel("Tasks to do")
+                
                 
                 HStack(spacing: 18.0){
                     ProblemTypeComponent(
@@ -180,84 +226,69 @@ struct SettingAlarm: View {
                             }
                         )
                     )
-                    ProblemTypeComponent(
-                        val: TypeOfProblemWrapper(val: .WalkMission),
-                        selected: Binding(
-                            get: {
-                                return selectedTypeOfProblem.val == TypeOfProblem.WalkMission
-                            },
-                            set: { val in
-                                if (val){
-                                    self.selectedTypeOfProblem = TypeOfProblemWrapper(val: .WalkMission)
-                                }
-                            }
-                        )
-                    )
+                    //                    ProblemTypeComponent(
+                    //                        val: TypeOfProblemWrapper(val: .WalkMission),
+                    //                        selected: Binding(
+                    //                            get: {
+                    //                                return selectedTypeOfProblem.val == TypeOfProblem.WalkMission
+                    //                            },
+                    //                            set: { val in
+                    //                                if (val){
+                    //                                    self.selectedTypeOfProblem = TypeOfProblemWrapper(val: .WalkMission)
+                    //                                }
+                    //                            }
+                    //                        )
+                    //                    )
                 }
-//                NavigationLink(
-//                    destination: ListAlarms()
-//                ) {
-//                    Text("test")
-//                }
                 
                 .padding()
-                 Divider()
-
+                Divider()
+                
                 Toggle(isOn: $vibration) {
                     Text("Vibration")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-
+                        .accessibilityLabel("Vibration")
+                    
                 }
                 .padding(.all, 20)
                 
-                 Divider()
+                Divider()
                 
                 Toggle(isOn: $snooze) {
                     Text("Snooze")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .accessibilityLabel("Snooze")
                 }
                 .padding(.all, 20)
                 
-//                Divider()
-                
-//                Spacer()
             }
             
-                .scrollContentBackground(.hidden)
-                .navigationBarItems(leading:
-                                        Button(action: {
-                    
+            .scrollContentBackground(.hidden)
+            
+        }
+        .navigationBarItems(
+            trailing:
+                Button(action: {
+                    self.addAlarm()
+                    self.presentationMode.wrappedValue.dismiss()
                 }) {
-//                    Image(systemName: "chevron.left").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/).imageScale(.large)
-                    
-                    Text("Cancel")
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                },
-                                    trailing:
-                                        Button(action: {
-                    
-                }) {
-                    Button("Save")
-                    {
-//                        guard let entity = NSEntityDescription.entity(forEntityName: "Alarms", in: managedObjectContext)
-                    }
-                        .fontWeight(.medium)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    Text("Save")
+                    .fontWeight(.medium)
+                    .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     
                 }
-           
-                )
-        }
+            
+        )
         
     }
     
 }
 
-    
+
 
 
 struct SettingAlarm_Previews: PreviewProvider {

@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct NonStoppingAlarmApp: App {
+    
+    
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         
         WindowGroup {
-            ListAlarms().environment(\.managedObjectContext, persistenceController.container.viewContext)
+            ListAlarms()
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
 
         }
     }
