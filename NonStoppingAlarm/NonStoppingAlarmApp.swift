@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct NonStoppingAlarmApp: App {
+    let persistenceController = PersistenceController.shared
+    
     var body: some Scene {
+        
         WindowGroup {
-            ContentView()
+            ListAlarms().environment(\.managedObjectContext, persistenceController.container.viewContext)
+
         }
     }
 }

@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  NonStoppingAlarm
+
+  Created by Shouq Turki Bin Tuwaym on 10/01/2023.
+  
+*/
+
+"Alarm"="منبه";
+
+"Sat"="سبت";
+           
+ "Sun"="أحد";
+    
+"Mon"="اثنين";
+
+"Tue"="ثلاثاء";
+
+"Wed"="أربعاء";
+
+"Thu"="خميس";
+
+"Fri"="جمعة";
+
+"Alarm"="المنبه";
+
+"Edit"="تحرير";
+
+"plus"="";
+
+"PM"="م";
+
+"AM"="ص";
+
+"Set Alarm Name"="اسم المنبه";
+
+"Repeat"="التكرار";
+
+"Tasks to do"="المهام";
+
+"Vibration"="الاهتزاز";
+
+"Snooze"="غفوة";
+
+"Back"="رجوع";
+
+"Cancel"="الغاء";
+
+"Save"="حفظ";
+
+"Math Problem"="مسائل رياضية";
+
+"Walk Mission"="المشي";
+
+"chevron.left"="chevron.right";
