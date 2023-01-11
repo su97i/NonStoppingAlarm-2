@@ -21,7 +21,7 @@ struct WeekDayComponent: View{
                 .font (.headline)
                 .fontWeight (.semibold)
                 .foregroundColor (selected ? .white : .black)
-                .frame(minWidth: 42 , minHeight: 42)
+                .frame(minWidth: 50 , minHeight: 47)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(Color("light green 1"),lineWidth: 1)
@@ -166,7 +166,7 @@ struct SettingAlarm: View {
             ScrollView {
                 Group{
                     TextField (
-                        "Set Alarm Name",
+                        "Alarm Name",
                         text: $alarmName
                         
                     )
@@ -189,7 +189,7 @@ struct SettingAlarm: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .accessibilityLabel("Repeat")
                     
-                    HStack(spacing: 12.0){
+                    HStack(spacing: 5.0){
                         
                         WeekDayComponent(day: WeekDayWrapper(val: .Sun, status: false), selected: $sunSelected)
                         WeekDayComponent(day: WeekDayWrapper(val: .Mon, status: false), selected: $monSelected)
