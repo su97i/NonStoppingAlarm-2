@@ -36,7 +36,7 @@ class NotificationManagerr {
         //        AudioServicesPlaySystemSound ( systemSoundID)
         let content = UNMutableNotificationContent()
         content.title = "Alarm"
-        content.subtitle = "The metro is closing in 30 minutes"
+        content.subtitle = "Please wake up"
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "mixkit-warning-alarm-buzzer-991.wav"))
         content.badge = 1
         
