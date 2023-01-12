@@ -9,16 +9,22 @@ This application is designed to help people who have difficulty to walkup from s
 
 
 ##Challenge Statement
+
 Helping people who have difficulty in waking up
 
 ##Solution Concept
+
 Create a platform for Adults to help them to wake up quickly without use their snooze several time. 
 
 ##Technologies & Tools
-Xcode - SwiftUI, CoreData, Notifications, Localaization, Date Picker, Accessibility: Voice over, 
+
+Xcode - SwiftUI, CoreData, Notifications, Localaization: English and Arabic Languages
+Date Picker, Accessibility: Voice over.
+
 Skitch 
 
 ##Short demo video link
+
 https://files.fm/f/5r8739xbw
 
 https://files.fm/f/vm3ytedcf
