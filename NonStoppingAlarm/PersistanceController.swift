@@ -11,17 +11,21 @@ import CoreData
 
 struct PersistenceController {
     // A singleton for our entire app to use
+    
     static let shared = PersistenceController(inMemory: false)
 
+    
     // Storage for Core Data
     let container: NSPersistentContainer
 
+    
     // A test configuration for SwiftUI previews
     static var preview: PersistenceController = {
         let controller = PersistenceController(inMemory: true)
 
-        // Create 10 example programming languages.
+        // Create 10 example entities languages.
         for _ in 0..<10 {
+            // we create our entity 
             let alarm = Alarms(context: controller.container.viewContext)
             alarm.fri = true
             alarm.time = Date()

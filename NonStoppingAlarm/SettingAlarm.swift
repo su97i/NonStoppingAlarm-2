@@ -40,6 +40,31 @@ struct WeekDayComponent: View{
     
 }
 
+enum TypeOfProblem: Codable, Hashable{
+    case MathProblem
+    case WalkMission
+}
+
+
+struct TypeOfProblemWrapper: Codable, Hashable{
+    var val: TypeOfProblem
+    var num:Int {
+        switch(self.val){
+            case .MathProblem:
+                return 1
+            case .WalkMission:
+                return 2
+        }
+    }
+    var str:String {
+        switch(self.val){
+            case .MathProblem:
+                return "Math Problem"
+            case .WalkMission:
+                return "Walk Mission"
+        }
+    }
+}
 
 struct ProblemTypeComponent: View{
     var val: TypeOfProblemWrapper
@@ -71,44 +96,13 @@ struct ProblemTypeComponent: View{
     
 }
 
-
-
-enum TypeOfProblem: Codable, Hashable{
-    case MathProblem
-    case WalkMission
-}
-
-
-struct TypeOfProblemWrapper: Codable, Hashable{
-    var val: TypeOfProblem
-    var num:Int {
-        switch(self.val){
-            case .MathProblem:
-                return 1
-            case .WalkMission:
-                return 2
-        }
-    }
-    var str:String {
-        switch(self.val){
-            case .MathProblem:
-                return "Math Problem"
-            case .WalkMission:
-                return "Walk Mission"
-        }
-    }
-}
-
 struct SettingAlarm: View {
-    //    private var managedObjectContext = ContentView()
-    //        .environment(\.managedObjectContext, yourCoreDataContext)
     
     @State private var selectedDate = Date()
-    //    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @Environment(\.managedObjectContext) var moc
-//    let moc = PersistenceController.shared.container.viewContext
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var notificationManager: NotificationManager
     
     @State private var alarmName: String = ""
     
@@ -154,11 +148,8 @@ struct SettingAlarm: View {
         } catch {
             print("whoops \(error.localizedDescription)")
         }
-//        ListAlarms().environment(
-//            \.managedObjectContext,
-//             self.moc
-//        )
     }
+    
     
     var body: some View {
         
@@ -190,6 +181,7 @@ struct SettingAlarm: View {
                         .accessibilityLabel("Repeat")
                     
                     HStack(spacing: 5.0){
+                        // create weekdaycomponents objects
                         
                         WeekDayComponent(day: WeekDayWrapper(val: .Sun, status: false), selected: $sunSelected)
                         WeekDayComponent(day: WeekDayWrapper(val: .Mon, status: false), selected: $monSelected)
@@ -274,6 +266,9 @@ struct SettingAlarm: View {
             trailing:
                 Button(action: {
                     self.addAlarm()
+                    NotificationManagerr.instance.requestAuthorization()
+                    self.scheduleNotification(date: self.selectedDate)
+                    
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Save")
@@ -284,6 +279,24 @@ struct SettingAlarm: View {
             
         )
         
+    }
+    
+    private func scheduleNotification(date: Date) {
+        let content = UNMutableNotificationContent()
+        content.title = "Alarm"
+        content.subtitle = "The metro is closing in 30 minutes"
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "mixkit-warning-alarm-buzzer-991.wav"))
+        content.badge = 1
+        
+        // calender
+//        let nextTriggerDate = Calendar.current.date(byAdding: .second, value: 60, to: Date())!
+        let comps = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString,
+                                            content: content,
+                                            trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
     }
     
 }

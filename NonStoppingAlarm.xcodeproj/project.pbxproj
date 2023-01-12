@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C15DB7AA296EF13D006C78C6 /* AlarmScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15DB7A9296EF13D006C78C6 /* AlarmScreen.swift */; };
+		C15DB7AC296EF20A006C78C6 /* MathProblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15DB7AB296EF20A006C78C6 /* MathProblem.swift */; };
+		C15DB7AE296EF2A5006C78C6 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15DB7AD296EF2A5006C78C6 /* Answer.swift */; };
+		C15DB7B0296EF2EF006C78C6 /* DoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15DB7AF296EF2EF006C78C6 /* DoneView.swift */; };
+		C15DB7C2296F3A12006C78C6 /* mixkit-warning-alarm-buzzer-991.wav in Resources */ = {isa = PBXBuildFile; fileRef = C15DB7C1296F3A12006C78C6 /* mixkit-warning-alarm-buzzer-991.wav */; };
+		C15DB7C4296F4CD5006C78C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15DB7C3296F4CD5006C78C6 /* AppDelegate.swift */; };
 		C1D93F422964295E00B7FBC3 /* NonStoppingAlarmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D93F412964295E00B7FBC3 /* NonStoppingAlarmApp.swift */; };
 		C1D93F442964295E00B7FBC3 /* ListAlarms.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D93F432964295E00B7FBC3 /* ListAlarms.swift */; };
 		C1D93F462964295F00B7FBC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1D93F452964295F00B7FBC3 /* Assets.xcassets */; };
@@ -18,7 +24,26 @@
 		C1D93F84296D4D2E00B7FBC3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1D93F81296D423500B7FBC3 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C15DB7C0296F30C7006C78C6 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C15DB7A9296EF13D006C78C6 /* AlarmScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmScreen.swift; sourceTree = "<group>"; };
+		C15DB7AB296EF20A006C78C6 /* MathProblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathProblem.swift; sourceTree = "<group>"; };
+		C15DB7AD296EF2A5006C78C6 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		C15DB7AF296EF2EF006C78C6 /* DoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneView.swift; sourceTree = "<group>"; };
+		C15DB7C1296F3A12006C78C6 /* mixkit-warning-alarm-buzzer-991.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-warning-alarm-buzzer-991.wav"; sourceTree = "<group>"; };
+		C15DB7C3296F4CD5006C78C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1D93F3E2964295E00B7FBC3 /* NonStoppingAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NonStoppingAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1D93F412964295E00B7FBC3 /* NonStoppingAlarmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonStoppingAlarmApp.swift; sourceTree = "<group>"; };
 		C1D93F432964295E00B7FBC3 /* ListAlarms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlarms.swift; sourceTree = "<group>"; };
@@ -49,6 +74,8 @@
 		C1D93F352964295E00B7FBC3 = {
 			isa = PBXGroup;
 			children = (
+				C15DB7C3296F4CD5006C78C6 /* AppDelegate.swift */,
+				C15DB7C1296F3A12006C78C6 /* mixkit-warning-alarm-buzzer-991.wav */,
 				C1D93F81296D423500B7FBC3 /* Localizable.strings */,
 				C1D93F7B296C93F800B7FBC3 /* Alarms+CoreDataClass.swift */,
 				C1D93F7C296C93F800B7FBC3 /* Alarms+CoreDataProperties.swift */,
@@ -74,6 +101,10 @@
 				C1D93F432964295E00B7FBC3 /* ListAlarms.swift */,
 				C1D93F54296B1A8200B7FBC3 /* Helpers.swift */,
 				C1D93F52296AB65700B7FBC3 /* SettingAlarm.swift */,
+				C15DB7A9296EF13D006C78C6 /* AlarmScreen.swift */,
+				C15DB7AB296EF20A006C78C6 /* MathProblem.swift */,
+				C15DB7AD296EF2A5006C78C6 /* Answer.swift */,
+				C15DB7AF296EF2EF006C78C6 /* DoneView.swift */,
 				C1D93F452964295F00B7FBC3 /* Assets.xcassets */,
 				C1D93F472964295F00B7FBC3 /* Preview Content */,
 				C1D93F7D296C99DA00B7FBC3 /* PersistanceController.swift */,
@@ -99,6 +130,7 @@
 				C1D93F3A2964295E00B7FBC3 /* Sources */,
 				C1D93F3B2964295E00B7FBC3 /* Frameworks */,
 				C1D93F3C2964295E00B7FBC3 /* Resources */,
+				C15DB7C0296F30C7006C78C6 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -149,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1D93F492964295F00B7FBC3 /* Preview Assets.xcassets in Resources */,
+				C15DB7C2296F3A12006C78C6 /* mixkit-warning-alarm-buzzer-991.wav in Resources */,
 				C1D93F84296D4D2E00B7FBC3 /* Localizable.strings in Resources */,
 				C1D93F462964295F00B7FBC3 /* Assets.xcassets in Resources */,
 			);
@@ -161,12 +194,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C15DB7C4296F4CD5006C78C6 /* AppDelegate.swift in Sources */,
 				C1D93F442964295E00B7FBC3 /* ListAlarms.swift in Sources */,
 				C1D93F53296AB65700B7FBC3 /* SettingAlarm.swift in Sources */,
 				C1D93F7A296C936300B7FBC3 /* Model.xcdatamodeld in Sources */,
+				C15DB7AE296EF2A5006C78C6 /* Answer.swift in Sources */,
 				C1D93F422964295E00B7FBC3 /* NonStoppingAlarmApp.swift in Sources */,
 				C1D93F55296B1A8200B7FBC3 /* Helpers.swift in Sources */,
+				C15DB7AA296EF13D006C78C6 /* AlarmScreen.swift in Sources */,
 				C1D93F7E296C99DA00B7FBC3 /* PersistanceController.swift in Sources */,
+				C15DB7B0296EF2EF006C78C6 /* DoneView.swift in Sources */,
+				C15DB7AC296EF20A006C78C6 /* MathProblem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
