@@ -2,7 +2,7 @@
 //  MathProblem.swift
 //  NonStoppingAlarm
 //
-//  Created by Shouq Turki Bin Tuwaym on 11/01/2023.
+//  Created by Sarah Sheikh on 9/01/2023.
 //
 
 import SwiftUI
