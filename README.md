@@ -32,6 +32,7 @@ https://files.fm/f/vm3ytedcf
 ## Challenge Summary
 <img width="938" alt="Screenshot 2023-01-12 at 8 47 01 PM" src="https://user-images.githubusercontent.com/116644229/212150452-baf9596f-2d1b-4f95-b177-b55c2b7b516b.png">
 
+### Localization Screenshots for Arabic Version
 
 
 
